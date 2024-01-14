@@ -12,21 +12,28 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Grid>
+        <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="Media Collection" Margin="4" FontWeight="Bold" VerticalAlignment="Center"/>
-            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            
+            <TextBlock Grid.Column="0" 
+                       Text="Media Collection" Margin="4" 
+                       FontWeight="Bold" VerticalAlignment="Center"/>
+            
+            <StackPanel Grid.Column="1" 
+                       Orientation="Horizontal" HorizontalAlignment="Right">
                 <TextBlock Text="Media Type" Margin="4" FontWeight="Bold" VerticalAlignment="Center"/>
                 <ComboBox x:Name="ItemFilter" MinWidth="120" Margin="0,2,6,4"/>
             </StackPanel>
         </Grid>
         
-        <ListView x:Name="ItemList" Grid.Row="1" Background="LightGoldenrodYellow">
+        <ListView x:Name="ItemList" Grid.Row="1" 
+                  Background="LightGoldenrodYellow">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:MediaItem">
                     <Grid>
@@ -56,5 +63,9 @@
                 </DataTemplate>
             </ListView.HeaderTemplate>
         </ListView>
+
+        <Button Grid.Row="2"
+                Content="Add Item" HorizontalAlignment="Right"
+                Margin="8" Click="AddButton_Click"/>
     </Grid>
 </Window>

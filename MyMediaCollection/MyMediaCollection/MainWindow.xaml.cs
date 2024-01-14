@@ -123,5 +123,17 @@ namespace MyMediaCollection
 
             _isLoaded = true;
         }
+
+        private async void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new ContentDialog
+            {
+                Title = "Media Collection",
+                Content = "Not implementing",
+                CloseButtonText = "OK",
+                XamlRoot = Content.XamlRoot
+            };
+            await dialog.ShowAsync();
+        }
     }
 }

@@ -1,16 +1,19 @@
-v1 Blank Window - просто пустое окно
-v2 Simple List View 
+v01 Blank Window - просто пустое окно
+v02 Simple List View 
 	создаем перечисления Enums
 	создаем классы модели Model
 	в главном окне создаем список данных
 	в скрипте создаем заголовок и пустой ListView
 	по загрузке ListView связываем со списком
 	добавляем шаблон ListView
-v3 List Header and Filter
+v03 List Header and Filter
 	добавляем шаблон заголовка
 	добавляем comboBox для выбора типа носителя
 	добавляем загрузку comboBox
 		список носителей
 		событие загрузки
 	событие изменение выборки
+v04 Button and Dialog
+	добавляем кнопку
+	по клику вызываем диалог
 
