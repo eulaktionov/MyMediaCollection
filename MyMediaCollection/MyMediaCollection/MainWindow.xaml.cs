@@ -29,12 +29,31 @@ namespace MyMediaCollection
     public sealed partial class MainWindow : Window
     {
         IList<MediaItem> _items { get; set; }
+        IList<string> _mediums { get; set; }
         bool _isLoaded;
 
         public MainWindow()
         {
             this.InitializeComponent();
             ItemList.Loaded += ItemList_Loaded;
+            ItemFilter.Loaded += ItemFilter_Loaded;
+            ItemFilter.SelectionChanged += ItemFilter_SelectionChanged;
+        }
+
+        private void ItemFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ItemList.ItemsSource = _items.Where(x => ItemFilter.SelectedItem is null
+                || string.IsNullOrWhiteSpace(ItemFilter.SelectedItem.ToString())
+                || ItemFilter.SelectedItem.ToString() == "All"
+                || ItemFilter.SelectedItem.ToString() == x.MediaType.ToString());
+        }
+
+        private void ItemFilter_Loaded(object sender, RoutedEventArgs e)
+        {
+            PopulateData();
+            var filterCombo = (ComboBox)sender;
+            filterCombo.ItemsSource = _mediums;
+            filterCombo.SelectedIndex = 0;
         }
 
         private void ItemList_Loaded(object sender, RoutedEventArgs e)
@@ -47,6 +66,14 @@ namespace MyMediaCollection
         public void PopulateData()
         {
             if (_isLoaded) return;
+
+            _mediums = new List<string>
+            {
+                "All",
+                nameof(ItemType.Book),
+                nameof(ItemType.Music),
+                nameof(ItemType.Video)
+            };
 
             var cd = new MediaItem()
             {

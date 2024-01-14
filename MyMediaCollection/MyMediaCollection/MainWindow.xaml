@@ -14,7 +14,18 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Media"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Media Collection" Margin="4" FontWeight="Bold" VerticalAlignment="Center"/>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock Text="Media Type" Margin="4" FontWeight="Bold" VerticalAlignment="Center"/>
+                <ComboBox x:Name="ItemFilter" MinWidth="120" Margin="0,2,6,4"/>
+            </StackPanel>
+        </Grid>
+        
         <ListView x:Name="ItemList" Grid.Row="1" Background="LightGoldenrodYellow">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:MediaItem">
@@ -28,6 +39,22 @@
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
+            <ListView.HeaderTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Border BorderBrush="BlueViolet" BorderThickness="0,0,0,2.5">
+                            <TextBlock Text="Medium" Margin="5,0,0,0" FontWeight="Bold"/>
+                        </Border>
+                        <Border Grid.Column="1" BorderBrush="BlueViolet" BorderThickness="0,0,0,2.5">
+                            <TextBlock Text="Title" Margin="5,0,0,0" FontWeight="Bold"/>
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </ListView.HeaderTemplate>
         </ListView>
     </Grid>
 </Window>
