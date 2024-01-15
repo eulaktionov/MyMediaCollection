@@ -15,6 +15,7 @@ namespace MyMediaCollection.ViewModels
         IList<string> _mediums;
         string _selectedMedium;
         ObservableCollection<MediaItem> _items;
+        ObservableCollection<MediaItem> _allItems;
 
         public MainViewModel()
         {
@@ -33,7 +34,31 @@ namespace MyMediaCollection.ViewModels
             set
             {
                 SetProperty(ref _selectedMedium, value);
+
+                //Items.Clear();
+                //foreach(var item in _allItems)
+                //{
+                //    if(string.IsNullOrWhiteSpace(_selectedMedium) ||
+                //        _selectedMedium == "All" ||
+                //        _selectedMedium == item.MediaType.ToString())
+                //    {
+                //        Items.Add(item);
+                //    }
+                //}
+                var selected = _allItems.Where(x => 
+                    _selectedMedium is null ||
+                    string.IsNullOrWhiteSpace(_selectedMedium) ||
+                    _selectedMedium == "All" ||
+                    _selectedMedium.ToString() == x.MediaType.ToString()
+                    );
+                Items = new ObservableCollection<MediaItem>(selected);
             }
+        }
+
+        public ObservableCollection<MediaItem> Items
+        { 
+            get => _items; 
+            set => SetProperty(ref _items, value);  
         }
 
         public void PopulateData()
@@ -86,12 +111,14 @@ namespace MyMediaCollection.ViewModels
                 }
             };
 
-            _items = new ObservableCollection<MediaItem>()
+            _allItems = new ObservableCollection<MediaItem>()
             {
                 cd,
                 book,
                 bluRay
             };
+
+            _items = new ObservableCollection<MediaItem>(_allItems);
         }
 
 

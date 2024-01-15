@@ -26,7 +26,12 @@ v05 ViewModel1
 		public Mediums (SetProperty)
 		public SelectedMedium (SetProperty)
 	добавляем static ViewModel в App.cs
-	доблавляем своейство ViewModel в MainWindow
+	добавляем свойство ViewModel в MainWindow
 	добавляем источники в ComboBox
 	убираем списки (все) из MainWindow
+v06 ViewModel2
+	добавляем Items в ViewModel
+	добавляем источник в ListView
+	обрабатываем выбор Combo (фильтруем) 
+		по свойству SelectedItem
 
