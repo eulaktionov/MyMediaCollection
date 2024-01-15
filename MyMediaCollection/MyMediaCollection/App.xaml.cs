@@ -13,6 +13,8 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.UI.Xaml.Shapes;
 
+using MyMediaCollection.ViewModels;
+
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -32,6 +34,10 @@ namespace MyMediaCollection
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
+        
+        public static MainViewModel ViewModel { get; }
+            = new MainViewModel();
+
         public App()
         {
             this.InitializeComponent();

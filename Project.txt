@@ -16,4 +16,17 @@ v03 List Header and Filter
 v04 Button and Dialog
 	добавляем кнопку
 	по клику вызываем диалог
+v05 ViewModel1
+	создаем базовый класс ViewModel
+	создаем MaidViewModel
+		_mediums
+		_selectedMedium
+		_items
+		PopulateData
+		public Mediums (SetProperty)
+		public SelectedMedium (SetProperty)
+	добавляем static ViewModel в App.cs
+	доблавляем своейство ViewModel в MainWindow
+	добавляем источники в ComboBox
+	убираем списки (все) из MainWindow
 
