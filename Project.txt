@@ -34,4 +34,14 @@ v06 ViewModel2
 	добавл€ем источник в ListView
 	обрабатываем выбор Combo (фильтруем) 
 		по свойству SelectedItem
+v07 ViewModel3
+	создаем базовую команду RelayCommand
+	добавл€ем во ViewModel DeleteCommand и AddEditCommand: конструктор, 
+		DeleteItem, CanDeleteItem, AddOrEditItem
+	реализуем SelectedItem
+	добавл€ем SelectedItem в ListView
+	реализуем кнопки Add Item, Delete Item
+	!!! непон€тно, как работает
+	 public void RaiseCanExecuteChanged() 
+            => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
 

@@ -36,16 +36,16 @@ namespace MyMediaCollection
 
         public MainViewModel ViewModel => App.ViewModel;
 
-        private async void AddButton_Click(object sender, RoutedEventArgs e)
-        {
-            var dialog = new ContentDialog
-            {
-                Title = "Media Collection",
-                Content = "Not implementing",
-                CloseButtonText = "OK",
-                XamlRoot = Content.XamlRoot
-            };
-            await dialog.ShowAsync();
-        }
+        //private async void AddButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    var dialog = new ContentDialog
+        //    {
+        //        Title = "Media Collection",
+        //        Content = "Not implementing",
+        //        CloseButtonText = "OK",
+        //        XamlRoot = Content.XamlRoot
+        //    };
+        //    await dialog.ShowAsync();
+        //}
     }
 }

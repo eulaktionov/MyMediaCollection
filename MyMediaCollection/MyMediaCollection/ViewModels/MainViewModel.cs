@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 using MyMediaCollection.Enums;
 using MyMediaCollection.Model;
@@ -14,12 +15,21 @@ namespace MyMediaCollection.ViewModels
     {
         IList<string> _mediums;
         string _selectedMedium;
+        
         ObservableCollection<MediaItem> _items;
         ObservableCollection<MediaItem> _allItems;
+        MediaItem _selectedItem;
+
+        public ICommand DeleteCommand { get; set; }
+        public ICommand AddEditCommand { get; set; }
+
+        int _additionaItemCount = 1;
 
         public MainViewModel()
         {
             PopulateData();
+            DeleteCommand = new RelayCommand(DeleteItem, CanDeleteItem);
+            AddEditCommand = new RelayCommand(AddOrEditItem);
         }
 
         public IList<string> Mediums
@@ -59,6 +69,16 @@ namespace MyMediaCollection.ViewModels
         { 
             get => _items; 
             set => SetProperty(ref _items, value);  
+        }
+
+        public MediaItem SelectedItem
+        {
+            get => _selectedItem;
+            set
+            {
+                SetProperty(ref _selectedItem, value);
+                ((RelayCommand)DeleteCommand).RaiseCanExecuteChanged();
+            }
         }
 
         public void PopulateData()
@@ -121,6 +141,32 @@ namespace MyMediaCollection.ViewModels
             _items = new ObservableCollection<MediaItem>(_allItems);
         }
 
+        void DeleteItem()
+        {
+            _allItems.Remove(SelectedItem);
+            Items.Remove(SelectedItem);
+        }
+        bool CanDeleteItem() => _selectedItem != null;
 
+        void AddOrEditItem()
+        {
+            const int startingItemCount = 3;
+            var newItem = new MediaItem
+            {
+                Id = startingItemCount + _additionaItemCount,
+                Location = LocationType.InCollection,
+                MediaType = ItemType.Music,
+                MediumInfo = new()
+                {
+                    Id = 1,
+                    MediaType = ItemType.Music,
+                    Name = "CD"
+                },
+                Name = $"CD {_additionaItemCount}"
+            };
+            _allItems.Add(newItem);
+            Items.Add(newItem);
+            _additionaItemCount++;
+        }
     }
 }
