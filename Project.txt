@@ -44,4 +44,15 @@ v07 ViewModel3
 	!!! непонятно, как работает
 	 public void RaiseCanExecuteChanged() 
             => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+v08 ViewModel4 
+	устанавливаем CommunityToolkit.Mvvm
+	меняем Mediums, Items на атрибуты
+	выносим код из SelectedMedium в OnSelectMediumChanged
+	удаляем свойства (Mediums, SelectedMedium, Items, SelectedItem)
+	изменяем Delete и  AddEdit команды
+	коротко
+		атрибутами отмечаем публикуемые свойства
+		(причем подчеркивание работает...)
+		добавляем дополнительные действия через On...Changed
+		создаем обработчики команд
 
